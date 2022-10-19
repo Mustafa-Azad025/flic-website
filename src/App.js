@@ -2,11 +2,12 @@ import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect, useRef } from "react";
 
-import Navbar from "./components/navbar";
-import About from "./components/about";
-import Contact from "./components/contact";
-import Home from "./components/home";
-import Team from "./components/team";
+import Navbar from "./components/Navbar";
+import Timeline from "./components/Timeline";
+import Contact from "./components/Contact";
+import Home from "./components/HomeHero";
+import Teams from "./components/Teams";
+import ResponsiveNavbar from "./components/ResponsiveNavbar";
 
 import './index.css';
 
@@ -39,19 +40,34 @@ function App() {
 
 
   return (
-    <div className="App">
-      <div id="navbar">
-        <Navbar />
-      </div>
-      <div id="panels">
-        <div id="panels-container" ref={panelsContainer} style={{width:"500%"}}>
-          <div className="home panel full-screen" ref={(e) => createPanelsRefs(e, 0)}>
+    <>
+    <div className="App sm:block hidden bg-[#202020]"> 
+      <Navbar />
+
+
+      <div id="panels snap-x snap-mandatory">
+        <div id="panels-container" ref={panelsContainer} style={{width:"800%"}}>
+          <div className="home panel snap-center full-screen" ref={(e) => createPanelsRefs(e, 0)}>
             <Home />
           </div>
 
-          <div className="about panel full-screen" ref={(e) => createPanelsRefs(e, 1)}>
-            <div><About /></div>
+          <div className="about panel full-screen snap-center snap-always" ref={(e) => createPanelsRefs(e, 1)}>
+            <Timeline />
           </div>
+
+        </div>
+      </div>
+
+      <Teams />
+      <Contact />
+    </div>
+    {/* for mobile */}
+    <div className="sm:hidden block bg-[#202020]">
+      <ResponsiveNavbar/>
+      <Home/>
+      <Timeline/>
+      <Teams/>
+      <Contact/>
           <div className="team full-screen" ref={(e) => createPanelsRefs(e, 2)}>
               <Team />
           </div>
@@ -62,6 +78,7 @@ function App() {
         </div>
       </div>
     </div>
+    </>
   );
 }
 
