@@ -54,6 +54,7 @@ function App() {
           <div className="about panel full-screen snap-center snap-always" ref={(e) => createPanelsRefs(e, 1)}>
             <Timeline />
           </div>
+
         </div>
       </div>
 
@@ -67,6 +68,15 @@ function App() {
       <Timeline/>
       <Teams/>
       <Contact/>
+          <div className="team full-screen" ref={(e) => createPanelsRefs(e, 2)}>
+              <Team />
+          </div>
+
+          <div className="contact full-screen" ref={(e) => createPanelsRefs(e, 3)}>
+            <Contact />
+          </div>
+        </div>
+      </div>
     </div>
     </>
   );
